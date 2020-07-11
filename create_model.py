@@ -1,11 +1,20 @@
-from oauth2client.client import GoogleCredentials
+import os
+import argparse
+
 from googleapiclient import discovery
 from googleapiclient import errors
 
-project_id = 'tensorflow-course-256109'
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--project_id', required=True)
+parser.add_argument('--credentials_path', required=True)
+args = parser.parse_args()
+
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = args.credentials_path
+project_id = args.project_id
 'https://ml.googleapis.com/v1/projects/{}/models'.format(project_id)
 
-# project_id = 'projects/{}'.format('your_project_ID')
 
 model_name = 'tutorial_model'
 request_dict = {'name': model_name, 'description': 'This is a machine learning model entry.'}
