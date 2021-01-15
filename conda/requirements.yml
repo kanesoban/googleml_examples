@@ -1,0 +1,9 @@
+name: googlecloud
+dependencies:
+  - python=3.6
+  - jupyterlab
+  - tensorflow-gpu==2.2.0
+  - pip:
+    - googlecloud
+    - google-cloud
+    - google-cloud-storage
