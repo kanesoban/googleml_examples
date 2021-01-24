@@ -110,7 +110,10 @@ Here you can see names for existing buckets. Use one or create one here.
 
 #### Get credentials file
 
-TODO
+Follow this (create service account)
+https://cloud.google.com/docs/authentication/getting-started
+
+Make sure that the right project is selected, because the credentials file will only work with it.
 
 ## Get information about a 'run' (e.g. source files, outputs etc)
 
@@ -146,6 +149,68 @@ gcloud ai-platform jobs submit training <JOB NAME>
 OR run
 
 `train_cloud.sh`
+
+For more info on submitting a training job:
+
+https://cloud.google.com/ai-platform/training/docs/using-gpus#submit-job
+
+## Creating a project in google cloud console
+
+Go here:
+https://console.cloud.google.com/flows/enableapi?apiid=ml.googleapis.com,compute_component&_ga=2.242232583.464093905.1610738268-1467417966.1610492912
+
+### Setup billing account 
+
+You will need to link a billing account to a project to use it:
+https://cloud.google.com/billing/docs/how-to/manage-billing-account
+
+If you don't have any active billing accounts then either activate or make new account:
+https://console.cloud.google.com/billing?_ga=2.12545969.464093905.1610738268-1467417966.1610492912
+
+For reopening a closed account:
+https://cloud.google.com/billing/docs/how-to/manage-billing-account#reopen_a_closed_billing_account
+
+### Create bucket
+
+https://cloud.google.com/ai-platform/training/docs/working-with-cloud-storage#cloud-storage-setup
+
+or
+
+https://console.cloud.google.com/storage/browser?_ga=2.15732659.464093905.1610738268-1467417966.1610492912&project=lunar-parsec-302010&prefix=
+
+
+## Deleting instances after training
+
+### Listing current instances
+
+`
+gcloud compute instances list
+`
+
+### Deleting instances
+
+If you don't want to keep an instance which was used for training, you should delete it so that it doesn't
+waste your money when it is being idle.
+
+https://cloud.google.com/compute/docs/instances/deleting-instance
+
+https://cloud.google.com/sdk/gcloud/reference/compute/instances/delete
+
+## Troubleshooting
+
+### I get "The project to be billed is associated with a closed billing account." when trying to start a training
+
+Things to try in order:
+
+* Try to enable billing in the project selector page.
+* Try to reopen the billing account linked to the project if it is closed: https://cloud.google.com/billing/docs/how-to/manage-billing-account#reopen_a_closed_billing_account
+* Create a new billing account if it cannot be reopened:
+    * https://console.cloud.google.com/billing?project=&folder=&organizationId=0
+    * link it to the project
+
+
+
+
 
 
 References:
